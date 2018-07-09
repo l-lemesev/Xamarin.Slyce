@@ -41,7 +41,7 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\..\..\Slyce-iOS-SDK\SlyceSDK\SlyceSDK.framework">
+    <NativeReference Include="lib\Slyce-iOS-SDK\SlyceSDK\SlyceSDK.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
