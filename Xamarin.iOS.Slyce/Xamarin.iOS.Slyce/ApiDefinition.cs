@@ -5,27 +5,12 @@ using CoreAnimation;
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
-//using SlyceSDK;
 using UIKit;
 
 namespace Xamarin.iOS.Slyce
 {
 
-    [Static]
-    [Verify(ConstantsInterfaceAssociation)]
-    partial interface Constants
-    {
-        // extern double SlyceSDKVersionNumber;
-        [Field("SlyceSDKVersionNumber", "__Internal")]
-        double SlyceSDKVersionNumber { get; }
-
-        // extern const unsigned char [] SlyceSDKVersionString;
-        [Field("SlyceSDKVersionString", "__Internal")]
-        byte[] SlyceSDKVersionString { get; }
-    }
-
-    [Static]
-    [Verify(ConstantsInterfaceAssociation)]
+    //[Static]
     partial interface Constants
     {
         // extern const NSUInteger SlyceDefaultLogLevel;
@@ -72,8 +57,7 @@ namespace Xamarin.iOS.Slyce
         SlyceLogger Logger { get; set; }
     }
 
-    [Static]
-    [Verify(ConstantsInterfaceAssociation)]
+    //[Static]
     partial interface Constants
     {
         // extern const CGPoint SlyceAnchorPointNone;
@@ -107,8 +91,7 @@ namespace Xamarin.iOS.Slyce
         void Slyce(Slyce slyce, nint count, nint total);
     }
 
-    [Static]
-    [Verify(ConstantsInterfaceAssociation)]
+    //[Static]
     partial interface Constants
     {
         // extern NSNotificationName  _Nonnull const SlyceDidOpenNotification;
@@ -143,7 +126,6 @@ namespace Xamarin.iOS.Slyce
 
         // -(BOOL)isOpen;
         [Export("isOpen")]
-        [Verify(MethodToProperty)]
         bool IsOpen { get; }
 
         // -(void)close;
@@ -179,8 +161,7 @@ namespace Xamarin.iOS.Slyce
         SlyceGDPRComplianceManager ComplianceManager { get; }
     }
 
-    [Static]
-    [Verify(ConstantsInterfaceAssociation)]
+    //[Static]
     partial interface Constants
     {
         // extern NSString *const _Nonnull SlyceErrorDomain;
@@ -250,33 +231,9 @@ namespace Xamarin.iOS.Slyce
         [NullAllowed, Export("defaultSearchParameters", ArgumentSemantic.Strong)]
         SlyceSearchParameters DefaultSearchParameters { get; set; }
 
-        [Wrap("WeakDelegate")]
-        [NullAllowed]
-        SlyceSessionDelegate Delegate { get; set; }
-
         // @property (nonatomic, weak) id<SlyceSessionDelegate> _Nullable delegate;
         [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
         NSObject WeakDelegate { get; set; }
-
-        // -(SlyceSearchTask * _Nullable)searchTaskWithRequest:(SlyceSearchRequest * _Nonnull)searchRequest workflowIdentifier:(NSString * _Nonnull)workflowIdentifier __attribute__((deprecated("Use 'startSearchTaskWithRequest:workflowIdentifier:listener:' instead.")));
-        [Export("searchTaskWithRequest:workflowIdentifier:")]
-        [return: NullAllowed]
-        SlyceSearchTask SearchTaskWithRequest(SlyceSearchRequest searchRequest, string workflowIdentifier);
-
-        // -(void)cancelSearchTaskWithIdentifier:(NSString * _Nonnull)taskIdentifier __attribute__((deprecated("")));
-        [Export("cancelSearchTaskWithIdentifier:")]
-        void CancelSearchTaskWithIdentifier(string taskIdentifier);
-    }
-
-    // @protocol SlyceSessionDelegate <NSObject>
-    [Protocol, Model]
-    [BaseType(typeof(NSObject))]
-    interface SlyceSessionDelegate
-    {
-        // @required -(void)slyceSession:(SlyceSession * _Nonnull)session didCreateSearchTask:(SlyceSearchTask * _Nonnull)searchTask __attribute__((deprecated("Use `slyceSession:willStartSearchTask:` instead")));
-        [Abstract]
-        [Export("slyceSession:didCreateSearchTask:")]
-        void DidCreateSearchTask(SlyceSession session, SlyceSearchTask searchTask);
     }
 
     // @interface SlyceCredentials : NSObject <NSCopying>
@@ -470,10 +427,6 @@ namespace Xamarin.iOS.Slyce
         [Export("initWithImageURL:searchParameters:")]
         IntPtr Constructor(string imageURL, [NullAllowed] SlyceSearchParameters searchParameters);
 
-        // -(instancetype _Nonnull)initWithMethod:(SlyceSearchRequestMethod)method __attribute__((deprecated("Specifying the `SlyceSearchRequestMethod` here is no longer supported.")));
-        [Export("initWithMethod:")]
-        IntPtr Constructor(SlyceSearchRequestMethod method);
-
         // @property (readonly, nonatomic, strong) NSDate * _Nonnull timestamp;
         [Export("timestamp", ArgumentSemantic.Strong)]
         NSDate Timestamp { get; }
@@ -556,27 +509,6 @@ namespace Xamarin.iOS.Slyce
         // -(void)removeListener:(id<SlyceSearchTaskListener> _Nonnull)listener;
         [Export("removeListener:")]
         void RemoveListener(SlyceSearchTaskListener listener);
-
-        // -(void)start __attribute__((deprecated("Use SlyceSession:startSearchTask method instead.")));
-        [Export("start")]
-        void Start();
-
-        [Wrap("WeakDelegate")]
-        [NullAllowed]
-        SlyceSearchTaskDelegate Delegate { get; set; }
-
-        // @property (nonatomic, weak) id<SlyceSearchTaskDelegate> _Nullable delegate __attribute__((deprecated("SlyceSearchTaskDelegate functionality has been replaced by SlyceSearchTaskListener APIs and may be removed in a future release.")));
-        [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-        NSObject WeakDelegate { get; set; }
-    }
-
-    // @protocol SlyceSearchTaskDelegate <SlyceSearchTaskListener>
-    [Protocol, Model]
-    interface SlyceSearchTaskDelegate : SlyceSearchTaskListener
-    {
-        // @optional -(void)slyceSearchTask:(SlyceSearchTask * _Nonnull)searchTask didFinishWithResults:(NSArray<SlyceSearchResult *> * _Nonnull)results errors:(NSArray<NSError *> * _Nonnull)errors __attribute__((deprecated("")));
-        [Export("slyceSearchTask:didFinishWithResults:errors:")]
-        void DidFinishWithResults(SlyceSearchTask searchTask, SlyceSearchResult[] results, NSError[] errors);
     }
 
     // @interface SlyceSearchResponse : NSObject <NSCoding>
@@ -631,7 +563,6 @@ namespace Xamarin.iOS.Slyce
     }
 
     [Static]
-    [Verify(ConstantsInterfaceAssociation)]
     partial interface Constants
     {
         // extern NSString *const _Nonnull SlyceLensIdentifierBarcode;
@@ -665,14 +596,6 @@ namespace Xamarin.iOS.Slyce
         [Export("lensIdentifier")]
         string LensIdentifier { get; }
 
-        [Wrap("WeakDelegate")]
-        [NullAllowed]
-        SlyceScannerDelegate Delegate { get; set; }
-
-        // @property (nonatomic, weak) id<SlyceScannerDelegate> _Nullable delegate __attribute__((deprecated("Please use SlyceSession and SlyceSearchTask instead, SlyceScannerDelegate will be removed in a future release.")));
-        [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-        NSObject WeakDelegate { get; set; }
-
         // @property (readonly, nonatomic, strong) AVCaptureSession * _Nullable captureSession;
         [NullAllowed, Export("captureSession", ArgumentSemantic.Strong)]
         AVCaptureSession CaptureSession { get; }
@@ -696,28 +619,6 @@ namespace Xamarin.iOS.Slyce
         // -(void)resumeDetection;
         [Export("resumeDetection")]
         void ResumeDetection();
-
-        // @property (readonly, nonatomic) NSString * _Nonnull identifier __attribute__((deprecated("Use 'lensIdentifier' instead.")));
-        [Export("identifier")]
-        string Identifier { get; }
-    }
-
-    // @protocol SlyceScannerDelegate <NSObject>
-    [Protocol, Model]
-    [BaseType(typeof(NSObject))]
-    interface SlyceScannerDelegate
-    {
-        // @optional -(void)slyceScanner:(SlyceScanner * _Nonnull)scanner didCreateRequest:(SlyceSearchRequest * _Nonnull)request __attribute__((deprecated("Please use SlyceSession and SlyceSearchTask instead, SlyceScannerDelegate will be removed in a future release.")));
-        [Export("slyceScanner:didCreateRequest:")]
-        void DidCreateRequest(SlyceScanner scanner, SlyceSearchRequest request);
-
-        // @optional -(void)slyceScanner:(SlyceScanner * _Nonnull)scanner didFinishWithResults:(NSArray<SlyceSearchResult *> * _Nonnull)results errors:(NSArray<NSError *> * _Nonnull)errors __attribute__((deprecated("Please use SlyceSession and SlyceSearchTask instead, SlyceScannerDelegate will be removed in a future release.")));
-        [Export("slyceScanner:didFinishWithResults:errors:")]
-        void DidFinishWithResults(SlyceScanner scanner, SlyceSearchResult[] results, NSError[] errors);
-
-        // @optional -(void)slyceScanner:(SlyceScanner * _Nonnull)scanner didEncounterError:(NSError * _Nullable)error __attribute__((deprecated("Please use SlyceSession and SlyceSearchTask instead, SlyceScannerDelegate will be removed in a future release.")));
-        [Export("slyceScanner:didEncounterError:")]
-        void DidEncounterError(SlyceScanner scanner, [NullAllowed] NSError error);
     }
 
     // @interface SlyceLensView : UIView
@@ -752,7 +653,7 @@ namespace Xamarin.iOS.Slyce
 
         // -(BOOL)isDetectionSuspended;
         [Export("isDetectionSuspended")]
-        [Verify(MethodToProperty)]
+ 
         bool IsDetectionSuspended { get; }
 
         // -(void)resetAnimations;

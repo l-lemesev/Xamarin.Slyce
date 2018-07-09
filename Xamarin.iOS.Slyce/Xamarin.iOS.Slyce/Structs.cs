@@ -4,18 +4,18 @@ using ObjCRuntime;
 namespace Xamarin.iOS.Slyce
 {
 	[Native]
-	public enum SlyceLogLevel : uint
+	public enum SlyceLogLevel : ulong
 	{
         Verbose = 2,
         Debug = 3,
         Info = 4,
         Warning = 5,
         Error = 6,
-        None = (9223372036854775807L * 2 + 1)
+		None = UInt64.MaxValue
     }
 
     [Native]
-    public enum SlyceError : int
+    public enum SlyceError : long
     {
         Unknown = -1,
         OperationCouldNotBeCompleted = -101,
@@ -52,7 +52,7 @@ namespace Xamarin.iOS.Slyce
     }
 
     [Native]
-    public enum SlyceBarcodeType : uint
+    public enum SlyceBarcodeType : ulong
        {
         None,
         Aztec,
@@ -75,13 +75,7 @@ namespace Xamarin.iOS.Slyce
     }
 
     [Native]
-    public enum SlyceSearchRequestMethod : uint
-    {
-        SlyceSearchRequestMethodWebSocket = 1
-    }
-
-    [Native]
-    public enum SlyceSearchResponseUpdateType : uint
+    public enum SlyceSearchResponseUpdateType : ulong
     {
         JobCreated,
         TagFound,
