@@ -58,12 +58,12 @@ namespace Xamarin.iOS.Slyce
     }
 
     //[Static]
-    partial interface Constants
-    {
-        // extern const CGPoint SlyceAnchorPointNone;
-        [Field("SlyceAnchorPointNone", "__Internal")]
-        CGPoint SlyceAnchorPointNone { get; }
-    }
+    //partial interface Constants
+    //{
+    //    // extern const CGPoint SlyceAnchorPointNone;
+    //    [Field("SlyceAnchorPointNone", "__Internal")]
+    //    CGPoint SlyceAnchorPointNone { get; }
+    //}
 
     // @protocol SlyceImageMatchingSyncDelegate <NSObject>
     [Protocol, Model]
@@ -594,7 +594,7 @@ namespace Xamarin.iOS.Slyce
 
         // @property (readonly, nonatomic) NSString * _Nonnull lensIdentifier;
         [Export("lensIdentifier")]
-        string LensIdentifier { get; }
+        string LensIdentifier { get; } 
 
         // @property (readonly, nonatomic, strong) AVCaptureSession * _Nullable captureSession;
         [NullAllowed, Export("captureSession", ArgumentSemantic.Strong)]
