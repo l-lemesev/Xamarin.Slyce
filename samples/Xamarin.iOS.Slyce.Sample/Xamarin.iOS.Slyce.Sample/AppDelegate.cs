@@ -29,16 +29,35 @@ namespace Xamarin.iOS.Slyce.Sample
             string spaceId = "";
                
             Slyce.Shared().OpenWithAccountIdentifier(accountId, apiKey, spaceId, (NSError error) => {
+
+                // This is an asynchronous completion handler. It is called when
+                // the Slyce open operation either completes successfully or failed
+
                 if (error != null) {
                     System.Diagnostics.Debug.WriteLine("Slyce open failed!");
+
+                    // Slyce failed to open. This can be due to incorrect credentials
+                    // or a poor network connection.
+
                 } else {
                     System.Diagnostics.Debug.WriteLine("Slyce open suceeded!");
-                }
 
+                    // Slyce opened successfully. You can now proceed to use SlyceSDK
+                    // services.
+
+                    doSomethingWithSlyce();
+                }
             });
 
 
             return true;
+        }
+
+        private void doSomethingWithSlyce()
+        {
+            System.Diagnostics.Debug.WriteLine("Slyce.Shared().DefaultSession = " + Slyce.Shared().DefaultSession.DebugDescription);
+
+            // do things with Slyce here...
         }
 
         public override void OnResignActivation(UIApplication application)
