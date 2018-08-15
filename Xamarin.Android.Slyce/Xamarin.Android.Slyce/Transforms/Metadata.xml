@@ -1,10 +1,44 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <!--
-  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
-  
-  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
-  -->
+    <!-- Remove internal packages -->
+    <remove-node path="/api/package[@name='it.slyce.sdk.internal']" />
+    <remove-node path="/api/package[@name='it.slyce.sdk.internal.util']" />
+    <remove-node path="/api/package[@name='com.neovisionaries.ws.client']" />
+    <!-- Remove other internals -->
+    <remove-node path="/api/package[@name='it.slyce.sdk.util']/class[@name='SlyceLogging']/constructor[@name='SlyceLogging' and count(parameter)=1 and parameter[1][@type='it.slyce.sdk.internal.util.Logging']]" />
+    <!-- Remove Full UI related classes -->
+    <remove-node path="/api/package[@name='it.slyce.sdk']/class[@name='SlyceUI']" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceTheme']" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/class[@name='Slyce']/method[@name='getTheme']" />
+    <!-- Remove listener adapters since they are more of a Java pattern -->
+    <remove-node path="/api/package[@name='it.slyce.sdk']/class[@name='SlyceSessionListenerAdapter']" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/class[@name='SlyceSearchTaskListenerAdapter']" />
+    <!-- C# friendly namespaces -->
+    <attr path="/api/package[@name='it.slyce.sdk']" name="managedName">SlyceSDK</attr>
+    <attr path="/api/package[@name='it.slyce.sdk.exception']" name="managedName">SlyceSDK.Exception</attr>
+    <attr path="/api/package[@name='it.slyce.sdk.util']" name="managedName">SlyceSDK.Util</attr>
+    <!-- Rename "onSlyceSearchTaskReceivedUpdate" listener methods and EventArgs to avoid conflicts  -->
+    <attr path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSearchTaskListener']/method[@name='onSlyceSearchTaskReceivedUpdate' and count(parameter)=2 and parameter[1][@type='it.slyce.sdk.SlyceSearchTask'] and parameter[2][@type='it.slyce.sdk.SlyceSearchResponseUpdate.JobCreated']]" name="managedName">OnSlyceSearchTaskReceivedUpdateJobId</attr>
+    <attr path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSearchTaskListener']/method[@name='onSlyceSearchTaskReceivedUpdate' and count(parameter)=2 and parameter[1][@type='it.slyce.sdk.SlyceSearchTask'] and parameter[2][@type='it.slyce.sdk.SlyceSearchResponseUpdate.ResultsReceived']]" name="managedName">OnSlyceSearchTaskReceivedUpdateResults</attr>
+    <attr path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSearchTaskListener']/method[@name='onSlyceSearchTaskReceivedUpdate' and count(parameter)=2 and parameter[1][@type='it.slyce.sdk.SlyceSearchTask'] and parameter[2][@type='it.slyce.sdk.SlyceSearchResponseUpdate.TagFound']]" name="managedName">OnSlyceSearchTaskReceivedUpdateTagFound</attr>
+    <attr path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSearchTaskListener']/method[@name='onSlyceSearchTaskReceivedUpdate' and count(parameter)=2 and parameter[1][@type='it.slyce.sdk.SlyceSearchTask'] and parameter[2][@type='it.slyce.sdk.SlyceSearchResponseUpdate.JobCreated']]" name="argsType">ReceivedUpdateJobIdEventArgs</attr>
+    <attr path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSearchTaskListener']/method[@name='onSlyceSearchTaskReceivedUpdate' and count(parameter)=2 and parameter[1][@type='it.slyce.sdk.SlyceSearchTask'] and parameter[2][@type='it.slyce.sdk.SlyceSearchResponseUpdate.ResultsReceived']]" name="argsType">ReceivedUpdateResultsEventArgs</attr>
+    <attr path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSearchTaskListener']/method[@name='onSlyceSearchTaskReceivedUpdate' and count(parameter)=2 and parameter[1][@type='it.slyce.sdk.SlyceSearchTask'] and parameter[2][@type='it.slyce.sdk.SlyceSearchResponseUpdate.TagFound']]" name="argsType">ReceivedUpdateTagFoundEventArgs</attr>
+    <!-- Deprecations -->
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='OnSlyceOpenListener']" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/class[@name='Slyce']/method[@name='open' and count(parameter)=4 and parameter[4][@type='it.slyce.sdk.OnSlyceOpenListener']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceScannerResultListener']" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceScanner']/method[@name='resume' and count(parameter)=1]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceScanner']/method[@name='setDetectorResultCooldown' and count(parameter)=1 and parameter[1][@type='long']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSession']/method[@name='launchSlyceCameraActivity' and count(parameter)=1 and parameter[1][@type='android.content.Context']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSession']/method[@name='createScanner' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='android.hardware.Camera'] and parameter[3][@type='java.lang.String']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSession']/method[@name='createScanner' and count(parameter)=4 and parameter[1][@type='android.content.Context'] and parameter[2][@type='android.hardware.Camera'] and parameter[3][@type='java.lang.String'] and parameter[4][@type='it.slyce.sdk.SlyceLensConfiguration']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSession']/method[@name='createScanner' and count(parameter)=3 and parameter[1][@type='android.hardware.Camera'] and parameter[2][@type='android.content.Context'] and parameter[3][@type='java.lang.String']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSession']/method[@name='createScanner' and count(parameter)=4 and parameter[1][@type='android.hardware.Camera'] and parameter[2][@type='android.content.Context'] and parameter[3][@type='it.slyce.sdk.SlyceLensConfiguration'] and parameter[4][@type='java.lang.String']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSession']/method[@name='buildSearchTask' and count(parameter)=2 and parameter[1][@type='it.slyce.sdk.SlyceSearchRequest'] and parameter[2][@type='java.lang.String']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSession']/method[@name='canCreateScannerWithLensId' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSession']/method[@name='cancelSearchTaskById' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/class[@name='SlyceSearchRequest.Builder']/method[@name='filepath' and count(parameter)=1 and parameter[1][@type='android.net.Uri']]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSearchTask']/method[@name='start' and count(parameter)=0]" />
+    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceSearchTask']/method[@name='start' and count(parameter)=1 and parameter[1][@type='it.slyce.sdk.SlyceSearchTaskListener']]" />
 </metadata>

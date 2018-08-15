@@ -4,3 +4,6 @@
 [submodule "Xamarin.iOS.Slyce/lib/Slyce-iOS-SDK"]
 	path = Xamarin.iOS.Slyce/lib/Slyce-iOS-SDK
 	url = git@github.com:Slyce-Inc/Slyce-iOS-SDK.git
+[submodule "Xamarin.Android.Slyce/lib/Slyce-Android-SDK"]
+	path = Xamarin.Android.Slyce/lib/Slyce-Android-SDK
+	url = ../../Slyce-Inc/Slyce-Android-SDK
