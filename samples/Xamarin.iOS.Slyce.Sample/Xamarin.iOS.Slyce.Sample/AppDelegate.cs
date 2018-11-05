@@ -57,7 +57,9 @@ namespace Xamarin.iOS.Slyce.Sample
         {
             System.Diagnostics.Debug.WriteLine("Slyce.Shared().DefaultSession = " + Slyce.Shared().DefaultSession.DebugDescription);
 
-            // do things with Slyce here...
+            SlyceViewController slvc = new SlyceViewController(Slyce.Shared(), SlyceViewControllerMode.Universal);
+            slvc.Delegate = new SlyceVCDelegate();
+            Window.RootViewController.PresentViewController(slvc, false, null);
         }
 
         public override void OnResignActivation(UIApplication application)
@@ -89,6 +91,38 @@ namespace Xamarin.iOS.Slyce.Sample
         public override void WillTerminate(UIApplication application)
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
+        }
+
+
+        class SlyceVCDelegate: SlyceViewControllerDelegate {
+
+
+            //[Export("slyceViewController:didOpenSession:")]
+            public override void SlyceViewController(SlyceViewController viewController, SlyceSession session) {
+
+            }
+
+
+            //[Export("slyceViewController:shouldDisplayDefaultDetailForItemDescriptor:")]
+            public override bool SlyceViewController(SlyceViewController viewController, SlyceItemDescriptor itemDescriptor) {
+                // Launch your Item detail view controller here after retrieving the desired data from the item descriptors.
+
+                System.Diagnostics.Debug.WriteLine("Should display detial for item " + itemDescriptor.ToString());
+
+                return true;
+            }
+
+
+            //[Export("slyceViewController:shouldDisplayDefaultListForItemDescriptors:")]
+            public override bool SlyceViewController(SlyceViewController viewController, SlyceItemDescriptor[] itemDescriptors) {
+                // Loop through the itemDescriptor to get the needed data
+                // Launch your Items list view controller here after retrieving the desired data from the item descriptors.
+
+
+                System.Diagnostics.Debug.WriteLine("Should display default list");
+
+                return true;
+            }
         }
     }
 }

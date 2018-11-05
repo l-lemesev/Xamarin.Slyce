@@ -81,4 +81,49 @@ namespace Xamarin.iOS.Slyce
         TagFound,
         ResultsReceived
     }
+
+
+    [Native]
+    public enum SlyceViewControllerMode : ulong
+    {
+        Universal,
+        Picker
+    }
+
+    [Native]
+    public enum SlyceActiveSearchesStyle : ulong
+    {
+        Hidden,
+        Visible
+    }
+
+    [Native]
+    public enum SlyceHeaderStyleLeft : ulong
+    {
+        Hidden,
+        BackButton
+    }
+
+    [Native]
+    public enum SlyceHeaderStyleCenter : ulong
+    {
+        Hidden,
+        Title,
+        Image
+    }
+
+    [Native]
+    public enum SlyceHeaderStyleRight : ulong
+    {
+        Hidden,
+        Settings,
+        Help
+    }
+
+    [Native]
+    public enum SlyceEnvironment : ulong
+    {
+        Staging,
+        Production
+    }
 }

@@ -813,4 +813,71 @@ namespace Xamarin.iOS.Slyce
         void OptOutAndForgetUser(Action<NSError> completion);
     }
 
+
+    // @interface SlyceViewController : UIViewController
+    [BaseType(typeof(UIViewController))]
+    interface SlyceViewController
+    {
+        // -(instancetype _Nonnull)initWithSlyce:(Slyce * _Nonnull)slyce mode:(SlyceViewControllerMode)mode options:(NSDictionary<NSString *,id> * _Nullable)options delegate:(id<SlyceViewControllerDelegate> _Nullable)delegate __attribute__((objc_designated_initializer));
+        [Export("initWithSlyce:mode:options:delegate:")]
+        [DesignatedInitializer]
+        IntPtr Constructor(Slyce slyce, SlyceViewControllerMode mode, [NullAllowed] NSDictionary<NSString, NSObject> options, [NullAllowed] SlyceViewControllerDelegate @delegate);
+
+        // -(instancetype _Nonnull)initWithSlyce:(Slyce * _Nonnull)slyce mode:(SlyceViewControllerMode)mode;
+        [Export("initWithSlyce:mode:")]
+        IntPtr Constructor(Slyce slyce, SlyceViewControllerMode mode);
+
+        [Wrap("WeakDelegate")]
+        [NullAllowed]
+        SlyceViewControllerDelegate Delegate { get; set; }
+
+        // @property (readwrite, nonatomic, weak) id<SlyceViewControllerDelegate> _Nullable delegate;
+        [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+        NSObject WeakDelegate { get; set; }
+
+        // @property (readonly, nonatomic) id<SlyceCameraControls> _Nonnull camera;
+        [Export("camera")]
+        SlyceCameraControls Camera { get; }
+
+        // @property (readonly, nonatomic) SlyceSession * _Nullable session;
+        [NullAllowed, Export("session")]
+        SlyceSession Session { get; }
+    }
+
+    // @protocol SlyceViewControllerDelegate <NSObject>
+    [Protocol, Model]
+    [BaseType(typeof(NSObject))]
+    interface SlyceViewControllerDelegate
+    {
+        // @optional -(void)slyceViewController:(SlyceViewController * _Nonnull)viewController didOpenSession:(SlyceSession * _Nonnull)session;
+        [Export("slyceViewController:didOpenSession:")]
+        void SlyceViewController(SlyceViewController viewController, SlyceSession session);
+
+        // @optional -(BOOL)slyceViewController:(SlyceViewController * _Nonnull)viewController shouldDisplayDefaultDetailForItemDescriptor:(SlyceItemDescriptor * _Nonnull)itemDescriptor;
+        [Export("slyceViewController:shouldDisplayDefaultDetailForItemDescriptor:")]
+        bool SlyceViewController(SlyceViewController viewController, SlyceItemDescriptor itemDescriptor);
+
+        // @optional -(BOOL)slyceViewController:(SlyceViewController * _Nonnull)viewController shouldDisplayDefaultListForItemDescriptors:(NSArray<SlyceItemDescriptor *> * _Nonnull)itemDescriptors;
+        [Export("slyceViewController:shouldDisplayDefaultListForItemDescriptors:")]
+        bool SlyceViewController(SlyceViewController viewController, SlyceItemDescriptor[] itemDescriptors);
+    }
+
+
+
+    // @interface SlyceItemDescriptor : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SlyceItemDescriptor
+    {
+        // @property (readonly, copy, nonatomic) NSString * _Nonnull identifier;
+        [Export("identifier")]
+        string Identifier { get; }
+
+        // @property (readonly, nonatomic, strong) NSDictionary<NSString *,id> * _Nonnull item;
+        [Export("item", ArgumentSemantic.Strong)]
+        NSDictionary<NSString, NSObject> Item { get; }
+
+        // @property (readonly, copy, nonatomic) NSString * _Nonnull jobIdentifier;
+        [Export("jobIdentifier")]
+        string JobIdentifier { get; }
+    }
 }
