@@ -7,7 +7,7 @@ This repository aims to be a place where Slyce engineers and third parties can
 collaborate or adding and improving bindings. Issues and Pull Requests are
 welcome!
 
-### [Slyce iOS SDK](Xamarin.iOS.Slyce) - version 5.1.5
+### [Slyce iOS SDK](Xamarin.iOS.Slyce) - version 5.4.0
 ### [Slyce Android SDK](Xamarin.Android.Slyce) - version 5.2.1
 
 
