@@ -1,18 +1,14 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
-using Android.Content;
-using SlyceSDK;
-using SlyceSDK.Exception;
 using SlyceSDK.Util;
+using Android.Support.V4.App;
+
 
 namespace Xamarin.Android.Slyce.Sample
 {
     [Activity(Label = "Xamarin.Android.Slyce.Sample", MainLauncher = true, Icon = "@mipmap/icon")]
-    public class MainActivity : Activity
+    public class MainActivity : FragmentActivity
     {
-        int count = 1;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -20,11 +16,7 @@ namespace Xamarin.Android.Slyce.Sample
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.myButton);
 
-            button.Click += delegate { button.Text = $"{count++} clicks!"; };
 
             setupSlyce();
         }
@@ -36,36 +28,12 @@ namespace Xamarin.Android.Slyce.Sample
             // Ensure the core native library is loaded. TODO: do this automatically.
             Java.Lang.JavaSystem.LoadLibrary("slyce_core");
 
-            string accountId = "";
-            string apiKey = "";
-            string spaceId = "";
-
-            SlyceSDK.Slyce.GetInstance(this).Open(accountId, apiKey, spaceId, new MySlyceOpenCompletionHandler(this));
-        }
+            string accountId = "slyce_integrations";
+            string apiKey = "l3Jk79JZM8ATo68dv2vrJc8m6YOdMIzv6BM0UwdW-F8";
+            string spaceId = "n2b4mfqcDji5Q9hyU8h3Ve";
 
 
-        // TODO: I'm sure there is a better way to implement the completion handler, but the author is a C# novice.
-        private class MySlyceOpenCompletionHandler : Java.Lang.Object, ISlyceCompletionHandler {
-
-            private Context context;
-
-            public MySlyceOpenCompletionHandler(Context context) {
-                this.context = context;
-            }
-
-            public void OnCompletion(SlyceError error) {
-
-                if (error != null)
-                {
-                    System.Diagnostics.Debug.WriteLine("Error opening Slyce: " + error.LocalizedMessage);
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("Slyce.GetInstance(this).DefaultSession = " + SlyceSDK.Slyce.GetInstance(context).DefaultSession.ToString());
-                }
-
-            }
+            SlyceSDK.Slyce.GetInstance(this).Open(accountId, apiKey, spaceId, new SlyceFragmentLauncher(this));
         }
     }
 }
-
