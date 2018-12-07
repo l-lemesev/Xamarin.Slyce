@@ -880,4 +880,46 @@ namespace Xamarin.iOS.Slyce
         [Export("jobIdentifier")]
         string JobIdentifier { get; }
     }
+
+
+
+
+    // @interface SlyceTheme : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SlyceTheme
+    {
+        // +(SlyceTheme * _Nonnull)shared;
+        [Static]
+        [Export("shared")]
+        SlyceTheme Shared();
+
+        // +(void)resetToDefaults;
+        [Static]
+        [Export("resetToDefaults")]
+        void ResetToDefaults();
+
+        // -(void)setFloat:(CGFloat)value forPropertyName:(NSString * _Nonnull)propertyName;
+        [Export("setFloat:forPropertyName:")]
+        void SetFloat(nfloat value, string propertyName);
+
+        // -(void)setString:(NSString * _Nonnull)string forPropertyName:(NSString * _Nonnull)propertyName;
+        [Export("setString:forPropertyName:")]
+        void SetString(string @string, string propertyName);
+
+        // -(void)setImage:(UIImage * _Nonnull)image forPropertyName:(NSString * _Nonnull)propertyName;
+        [Export("setImage:forPropertyName:")]
+        void SetImage(UIImage image, string propertyName);
+
+        // -(void)setFontName:(NSString * _Nonnull)fontName forPropertyName:(NSString * _Nonnull)propertyName;
+        [Export("setFontName:forPropertyName:")]
+        void SetFontName(string fontName, string propertyName);
+
+        // -(void)setColor:(UIColor * _Nonnull)color forPropertyName:(NSString * _Nonnull)propertyName;
+        [Export("setColor:forPropertyName:")]
+        void SetColor(UIColor color, string propertyName);
+
+        // -(void)setAppearanceStyle:(NSUInteger)style forPropertyName:(NSString * _Nonnull)propertyName;
+        [Export("setAppearanceStyle:forPropertyName:")]
+        void SetAppearanceStyle(nuint style, string propertyName);
+    }
 }
