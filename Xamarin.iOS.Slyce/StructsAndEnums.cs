@@ -3,15 +3,15 @@ using ObjCRuntime;
 
 namespace Xamarin.iOS.Slyce
 {
-	[Native]
-	public enum SlyceLogLevel : ulong
-	{
+    [Native]
+    public enum SlyceLogLevel : ulong
+    {
         Verbose = 2,
         Debug = 3,
         Info = 4,
         Warning = 5,
         Error = 6,
-		None = UInt64.MaxValue
+        None = UInt64.MaxValue
     }
 
     [Native]
@@ -33,6 +33,7 @@ namespace Xamarin.iOS.Slyce
         UnexpectedResponseType = -206,
         WebSocketConnection = -207,
         ConfigurationService = -208,
+        WorkflowTimeout = -209,
         JSONParsing = -301,
         SearchRequestEncoding = -302,
         InvalidLens = -401,
@@ -48,12 +49,21 @@ namespace Xamarin.iOS.Slyce
         CoreData = -702,
         FeatureMatchCatalog = -801,
         UserNotGDPRCompliant = -901,
-        UserIdentifierNotSet = -902
+        UserIdentifierNotSet = -902,
+        DatabaseGeneral = -1001,
+        DatabaseUnsupportedVersion = -1002,
+        SearchNotFound = -1101,
+        SearchEncoding = -1102,
+        SearchImageExists = -1103,
+        SearchImageWriteFailed = -1104,
+        SearchExists = -1105,
+        MigrationFetchExistingFailed = -1201,
+        MigrationAddNewFailed = -1202
     }
 
     [Native]
     public enum SlyceBarcodeType : ulong
-       {
+    {
         None,
         Aztec,
         Codabar,
@@ -75,13 +85,18 @@ namespace Xamarin.iOS.Slyce
     }
 
     [Native]
+    public enum SlyceDetectionType : ulong
+    {
+        SlyceDetectionTypeBarcode = 1
+    }
+
+    [Native]
     public enum SlyceSearchResponseUpdateType : ulong
     {
         JobCreated,
         TagFound,
         ResultsReceived
     }
-
 
     [Native]
     public enum SlyceViewControllerMode : ulong
