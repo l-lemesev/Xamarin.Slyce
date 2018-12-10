@@ -15,8 +15,6 @@
     
     <!-- Remove Full UI related classes -->
     <remove-node path="/api/package[@name='it.slyce.sdk']/class[@name='SlyceUI']" />
-    <remove-node path="/api/package[@name='it.slyce.sdk']/interface[@name='SlyceTheme']" />
-    <remove-node path="/api/package[@name='it.slyce.sdk']/class[@name='Slyce']/method[@name='getTheme']" />
     
     
     <!-- Remove listener adapters since they are more of a Java pattern -->
