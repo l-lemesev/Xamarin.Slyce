@@ -5,8 +5,8 @@
     <remove-node path="/api/package[@name='it.slyce.sdk.internal.lens']" />
     <remove-node path="/api/package[@name='it.slyce.sdk.internal.util']" />
     <remove-node path="/api/package[@name='it.slyce.sdk.internal.analytics']" />
+    <remove-node path="/api/package[@name='it.slyce.sdk.internal.shimmer']"/>
     <remove-node path="/api/package[@name='com.neovisionaries.ws.client']" />
-       
     
     
     <!-- Remove other internals -->
