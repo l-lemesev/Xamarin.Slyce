@@ -28,9 +28,9 @@ namespace Xamarin.Android.Slyce.Sample
             // Ensure the core native library is loaded. TODO: do this automatically.
             Java.Lang.JavaSystem.LoadLibrary("slyce_core");
 
-            string accountId = "slyce_integrations";
-            string apiKey = "l3Jk79JZM8ATo68dv2vrJc8m6YOdMIzv6BM0UwdW-F8";
-            string spaceId = "n2b4mfqcDji5Q9hyU8h3Ve";
+            string accountId = "";
+            string apiKey = "";
+            string spaceId = "";
 
 
             SlyceSDK.Slyce.GetInstance(this).Open(accountId, apiKey, spaceId, new SlyceFragmentLauncher(this));
