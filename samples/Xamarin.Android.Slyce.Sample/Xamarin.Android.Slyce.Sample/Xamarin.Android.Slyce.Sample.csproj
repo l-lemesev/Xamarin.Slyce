@@ -132,6 +132,12 @@
     <Reference Include="Xamarin.GooglePlayServices.Gcm">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Gcm.60.1142.1\lib\MonoAndroid80\Xamarin.GooglePlayServices.Gcm.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Vision.Common">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Vision.Common.60.1142.1\lib\MonoAndroid80\Xamarin.GooglePlayServices.Vision.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Vision">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Vision.60.1142.1\lib\MonoAndroid80\Xamarin.GooglePlayServices.Vision.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -182,4 +188,6 @@
   <Import Project="..\packages\Xamarin.GooglePlayServices.Base.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Base.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets')" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Iid.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Iid.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Iid.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Iid.targets')" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Gcm.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Gcm.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Gcm.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Gcm.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Vision.Common.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Vision.Common.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Vision.Common.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Vision.Common.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Vision.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Vision.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Vision.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Vision.targets')" />
 </Project>
